@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TTS Order</title>
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/menu.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="scripts/localstorage.js"></script>
+        <script src="scripts/menu.js"></script>
+    </head>
+    <body ng-app="menu">
+        <div class="header">
+            <h1>TTS Order</h1>
+            <p>Menu Maker</p>
+        </div>
+        <div class="centerb main" ng-controller="menu">
+            <div class="whiteback flexwrap flexcenter center">
+                <div ng-repeat="cat in categories" class="category flexnot {{($index == selected) ? 'selected' : ''}}" ng-click="select($index)">
+                    <p ng-click="remove_cat($index)" class="remove_btn">&times;</p>{{cat}}:
+                    <select name="{{cat}}_options" ng-model="cat_values[$index]">
+                        <option value="">None</option>
+                        <option ng-repeat="x in all_categories[cat]" value="{{x}}">{{x}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="whiteback center">
+                <p class="input_group centerb">Category</p>
+                <div class="input_group centerb flexnot flexcenter">
+                    <label for="new_cat">New Category:</label>
+                    <input name="new_cat">
+                    <button ng-click="new_cat()">Add</button>
+                </div>
+                <div class="input_group centerb flexnot flexcenter">
+                    <label for="add_cat">Add Category:</label>
+                    <select name="add_cat">
+                        <option ng-repeat="(key,value) in (all_categories)" value="{{key}}">{{key}}</option>
+                    </select>
+                    <button ng-click="add_cat()">Add</button>
+                </div>
+            </div>
+            <div class="whiteback center">
+                <p class="input_group centerb">Category Item</p>
+                <div class="input_group centerb flexnot flexcenter">
+                    <label for="new_it">New Item:</label>
+                    <input name="new_it">
+                    <button ng-click="new_it()">Add</button>
+                </div>
+                <div class="input_group centerb flexnot flexcenter">
+                    <label for="del_it">Delete Item:</label>
+                    <select name="del_it">
+                        <option ng-repeat="item in (all_categories[categories[selected]])" value="{{item}}">{{item}}</option>
+                    </select>
+                    <button ng-click="del_it()">Delete</button>
+                </div>
+            </div>
+            <div class="whiteback center flexwrap flexcenter">
+                <div class="btn" ng-click="ask_reset()">Reset</div>
+                <div class="btn" ng-click="add_meal()">Add Meal</div>
+                <div class="btn" ng-click="goback()">Change Order</div>
+            </div>
+        </div>
+    </body>
+</html>

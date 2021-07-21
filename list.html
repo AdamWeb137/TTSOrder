@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TTS Order</title>
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/list.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="scripts/localstorage.js"></script>
+        <script src="scripts/list.js"></script>
+    </head>
+    <body ng-app="list">
+        <div class="header">
+            <h1>TTS Order</h1>
+            <p>Order List</p>
+        </div>
+        <div class="centerb main" ng-controller="list">
+            <div class="whiteback center" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">
+                <div ng-repeat="meal in meals track by $index" class="meal flexnot flexcenter">
+                    <p class="meal_num">Meal #{{$index+1}}: </p>
+                    <p ng-repeat="item in meal track by $index" class="item_group">{{item.name}}</p>
+                    <button ng-click="delete_meal($index)">Delete</button>
+                </div>
+            </div>
+            <div class="whiteback center flexwrap flexcenter">
+                <div class="btn" ng-click="order()" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">TTS Order</div>
+                <div class="btn" ng-click="add()">Add Meal</div>
+                <div class="btn" ng-click="clear()" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">Clear Meal</div>
+            </div>
+            <div class="whiteback center" style="display:{{(meals.length == 0 && saved_meal_names.length == 0) ? 'none' : 'block'}}">
+                <div class="input_group" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">
+                    <label for="save_num">Save Meal #</label>
+                    <input name="save_num" type="number" min="1" step="1" max="{{meals.length}}" value="1">
+                    <input name="save_meal">
+                    <button ng-click="save_meal()">Save</button>
+                </div>
+                <div class="input_group" style="display:{{(saved_meal_names.length > 0) ? 'block' : 'none'}}">
+                    <label for="load_meal">Load Meal:</label>
+                    <select name="load_meal">
+                        <option ng-repeat="x in saved_meal_names" value="{{x}}">{{x}}</option>
+                    </select>
+                    <button ng-click="load_meal()">Load</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TTS Order</title>
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/order.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="scripts/localstorage.js"></script>
+        <script src="scripts/order.js"></script>
+    </head>
+    <body ng-app="order">
+        <div class="header">
+            <h1>TTS Order</h1>
+            <p>Order</p>
+        </div>
+        <div class="centerb main" ng-controller="order">
+            <div class="center flexwrap flexcenter content" id="lines">
+                <div ng-repeat="x in lines track by $index" class="line {{($index == selected) ? 'selected' : ''}}" ng-click="select($index,true,true,true)"><p>{{x}}</p></div>
+            </div>
+            <div class="center flexnot flexcenter" id="toolbar">
+                <img class="pixel" id="backward_btn" src="imgs/order/backward.png" ng-click="select_ahead(-1)">
+                <img class="pixel" id="play_btn" src="imgs/order/play.png" ng-click="play_or_pause()">
+                <img class="pixel" id="cancel_btn" src="imgs/order/cancel.png" ng-click="cancel()">
+                <img class="pixel" id="forward_btn" src="imgs/order/forward.png" ng-click="select_ahead(1)">
+            </div>
+            <div class="center options">
+                <div class="input_group centerb"><label for="voices">Voice:</label><select name="voices"></select></div>
+                <div class="input_group centerb"><label for="autoplay">Enable Auto Play:</label><input ng-model="autoplay" type="checkbox" name="autoplay" value="autoplay"></div>
+                <div class="flexwrap flexcenter">
+                    <div class="btn" ng-click="change_lines('order')">Order Lines</div>
+                    <div class="btn" ng-click="change_lines('response')">Response Lines</div>
+                </div>
+                <div class="ranges flexwrap flexcenter">
+                    <div class="input_group range"><label for="volume">Volume:</label><input type="range" name="volume" value="1" min="0.1" max="3" step="0.1"></div>
+                    <div class="input_group range"><label for="pitch">Pitch:</label><input type="range" name="pitch" value="1" min="0.1" max="2" step="0.1"></div>
+                    <div class="input_group range"><label for="rate">Rate:</label><input type="range" name="rate" value="1" min="0.1" max="2" step="0.1"></div>
+                </div>
+                <div class="input_group centerb"><textarea class="centerb" name="line_text" ng-model="lines[selected]"></textarea></div>
+                <div class="flexwrap flexcenter">
+                    <div class="btn" ng-click="new()">New</div>
+                    <div class="btn" ng-click="delete()">Delete</div>
+                    <div class="btn" ng-click="goback()">Change Order</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

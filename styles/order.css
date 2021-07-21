@@ -1,0 +1,70 @@
+.line {
+    background-color: black;
+    margin:10px;
+    color:white;
+    font-size: 1rem;
+    width: fit-content;
+    padding:5px 15px;
+    user-select: none;
+}
+
+.line:hover{
+    cursor: pointer;
+}
+
+.line p {
+    padding:0px;
+    margin:0px;
+}
+
+#lines {
+    width:auto;
+}
+
+.selected {
+    background-color: darkred;
+}
+
+#toolbar > * {
+    margin:10px;
+}
+
+#toolbar > *:hover{
+    cursor: pointer;
+}
+
+.content, .options, #toolbar {
+    border:5px solid black;
+    margin-top:8px;
+    background-color: white;
+}
+
+
+.range{
+    margin:4px;
+}
+
+textarea {
+    width:80%;
+    font-size: 1rem;
+}
+
+/* .options {
+    font-size: 200%;
+} */
+
+/* .options {
+    background-color: black;
+} */
+
+.input_group {
+    margin-top:4px;
+    margin-bottom:4px;
+    background-color: darkred;
+    color:white;
+    padding:8px;
+}
+
+.input_margin {
+    margin:4px;
+}

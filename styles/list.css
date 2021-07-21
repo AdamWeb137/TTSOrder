@@ -1,0 +1,26 @@
+.meal {
+    margin:4px;
+    align-items: center;
+    background-color: black;
+    color:white;
+    padding:8px;
+    user-select: none;
+}
+
+.meal_num {
+    font-size: 1.5rem;
+}
+
+.meal > p:not(.meal_num){
+    background-color: darkred;
+    margin:4px;
+    padding:8px;
+}
+
+.input_group {
+    margin-top:4px;
+    margin-bottom:4px;
+    background-color: darkred;
+    color:white;
+    padding:8px;
+}

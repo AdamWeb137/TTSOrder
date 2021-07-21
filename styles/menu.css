@@ -1,0 +1,40 @@
+.category {
+    margin:4px;
+    align-items: center;
+    background-color: black;
+    color:white;
+    padding:8px;
+    user-select: none;
+}
+
+.category:hover{
+    cursor: pointer;
+}
+
+.category > * {
+    margin: 4px;
+}
+
+.remove_btn:hover {
+    cursor: pointer;
+}
+
+/* .remove_btn{
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+} */
+
+
+
+.input_group {
+    margin-top:4px;
+    margin-bottom:4px;
+    background-color: darkred;
+    color:white;
+    padding:8px;
+}
+
+.selected {
+    background-color: darkred;
+}
