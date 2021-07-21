@@ -6,12 +6,17 @@
         <title>TTS Order</title>
         <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/global.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="scripts/localstorage.js"></script>
+        <script src="scripts/index.js"></script>
     </head>
-    <body>
-        <div class="card">
-            <h1>TTS Order</h1>
+    <body ng-app="index">
+        <div class="card" ng-controller="index">
+            <a href="index.html"><h1>TTS Order</h1></a>
             <p>A simple website to create fast-food orders and speak them</p>
-            <a href="list.html"><div class="btn">Start</div></a>
+            <a href="list.html"><div class="btn">Start Order List</div></a>
+            <a href="order.html"><div class="btn">Go to TTS Lines</div></a>
+            <div class="btn" ng-click="reset()">Reset all Data</div>
         </div>
     </body>
 </html>

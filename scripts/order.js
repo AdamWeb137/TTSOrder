@@ -48,7 +48,7 @@ app.controller("order",($scope)=>{
     window.speechSynthesis.cancel();
 
     $scope.speech = speech;
-    const def = ["hello i want a burger", "make that a meal", "medium fries and drink", "thank you"];
+    const def = ["filler line"];
     $scope.order_lines = JSON.parse(get_session_default("lines",JSON.stringify(def)));
     $scope.response_lines = ["Yes","No","Thank you","That's all","number", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     $scope.lines = $scope.order_lines;
@@ -57,6 +57,9 @@ app.controller("order",($scope)=>{
     $scope.autoplay = false;
     $scope.canceled = false;
     $scope.rewinded = false;
+
+    $scope.saved_order_names = JSON.parse(get_local_default("saved_order_names","[]"));
+    $scope.saved_orders = JSON.parse(get_local_default("saved_orders","{}"));
 
     window.addEventListener("load",()=>{
         SpeechHandler.link_inputs($scope.speech);
@@ -150,5 +153,40 @@ app.controller("order",($scope)=>{
         $scope.lines = lines;
         $scope.select(0);
     };
+
+    $scope.save_order_vars = ()=>{
+        set_json_local("saved_order_names",$scope.saved_order_names);
+        set_json_local("saved_orders",$scope.saved_orders);
+        console.log($scope.saved_order_names);
+        console.log($scope.saved_orders);
+    };
+
+    $scope.save_order = ()=>{
+        let input = document.querySelector("input[name='save_order']");
+        if(input.value.length == 0){
+            alert("Please give your order a name");
+            return;
+        }
+        if($scope.saved_order_names.indexOf(input.value) > -1){
+            alert("Order name already taken");
+            return;
+        }
+        $scope.saved_order_names.push(input.value);
+        $scope.saved_orders[input.value] = $scope.order_lines;
+        $scope.save_order_vars();
+        $scope.$apply();
+    };
+
+    $scope.load_order = ()=>{
+        let input = document.querySelector("select[name='load_order']");
+        if($scope.saved_order_names.indexOf(input.value) == -1){
+            alert("Meal does not exist");
+            return;
+        }
+        $scope.order_lines = JSON.parse(JSON.stringify($scope.saved_orders[input.value]));
+        console.log($scope.order_lines);
+        $scope.change_lines("order");
+    };
+
 
 });

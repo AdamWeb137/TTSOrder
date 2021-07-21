@@ -12,7 +12,7 @@
     </head>
     <body ng-app="list">
         <div class="header">
-            <h1>TTS Order</h1>
+            <a href="index.html"><h1>TTS Order</h1></a>
             <p>Order List</p>
         </div>
         <div class="centerb main" ng-controller="list">
@@ -29,13 +29,13 @@
                 <div class="btn" ng-click="clear()" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">Clear Meal</div>
             </div>
             <div class="whiteback center" style="display:{{(meals.length == 0 && saved_meal_names.length == 0) ? 'none' : 'block'}}">
-                <div class="input_group" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">
+                <div class="input_group centerb" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">
                     <label for="save_num">Save Meal #</label>
                     <input name="save_num" type="number" min="1" step="1" max="{{meals.length}}" value="1">
                     <input name="save_meal">
                     <button ng-click="save_meal()">Save</button>
                 </div>
-                <div class="input_group" style="display:{{(saved_meal_names.length > 0) ? 'block' : 'none'}}">
+                <div class="input_group centerb" style="display:{{(saved_meal_names.length > 0) ? 'block' : 'none'}}">
                     <label for="load_meal">Load Meal:</label>
                     <select name="load_meal">
                         <option ng-repeat="x in saved_meal_names" value="{{x}}">{{x}}</option>

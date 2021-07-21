@@ -86,3 +86,8 @@ body {
 .btn:hover{
     cursor: pointer;
 }
+
+a {
+    color:white;
+    text-decoration: none;
+}

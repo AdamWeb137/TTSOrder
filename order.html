@@ -12,7 +12,7 @@
     </head>
     <body ng-app="order">
         <div class="header">
-            <h1>TTS Order</h1>
+            <a href="index.html"><h1>TTS Order</h1></a>
             <p>Order</p>
         </div>
         <div class="centerb main" ng-controller="order">
@@ -20,18 +20,20 @@
                 <div ng-repeat="x in lines track by $index" class="line {{($index == selected) ? 'selected' : ''}}" ng-click="select($index,true,true,true)"><p>{{x}}</p></div>
             </div>
             <div class="center flexnot flexcenter" id="toolbar">
+                <div class="btn" ng-click="change_lines('order')">Order</div>
                 <img class="pixel" id="backward_btn" src="imgs/order/backward.png" ng-click="select_ahead(-1)">
                 <img class="pixel" id="play_btn" src="imgs/order/play.png" ng-click="play_or_pause()">
                 <img class="pixel" id="cancel_btn" src="imgs/order/cancel.png" ng-click="cancel()">
                 <img class="pixel" id="forward_btn" src="imgs/order/forward.png" ng-click="select_ahead(1)">
+                <div class="btn" ng-click="change_lines('response')">Response</div>
             </div>
             <div class="center options">
                 <div class="input_group centerb"><label for="voices">Voice:</label><select name="voices"></select></div>
                 <div class="input_group centerb"><label for="autoplay">Enable Auto Play:</label><input ng-model="autoplay" type="checkbox" name="autoplay" value="autoplay"></div>
-                <div class="flexwrap flexcenter">
+                <!-- <div class="flexwrap flexcenter">
                     <div class="btn" ng-click="change_lines('order')">Order Lines</div>
                     <div class="btn" ng-click="change_lines('response')">Response Lines</div>
-                </div>
+                </div> -->
                 <div class="ranges flexwrap flexcenter">
                     <div class="input_group range"><label for="volume">Volume:</label><input type="range" name="volume" value="1" min="0.1" max="3" step="0.1"></div>
                     <div class="input_group range"><label for="pitch">Pitch:</label><input type="range" name="pitch" value="1" min="0.1" max="2" step="0.1"></div>
@@ -42,6 +44,20 @@
                     <div class="btn" ng-click="new()">New</div>
                     <div class="btn" ng-click="delete()">Delete</div>
                     <div class="btn" ng-click="goback()">Change Order</div>
+                </div>
+            </div>
+            <div class="whiteback center" style="display: {{(line_type == 'order') ? 'block' : 'none'}};">
+                <div class="input_group centerb">
+                    <label for="save_order">Save Order</label>
+                    <input name="save_order">
+                    <button ng-click="save_order()">Save</button>
+                </div>
+                <div class="input_group centerb" style="display:{{(saved_order_names.length > 0) ? 'block' : 'none'}}">
+                    <label for="load_order">Load Order:</label>
+                    <select name="load_order">
+                        <option ng-repeat="x in saved_order_names" value="{{x}}">{{x}}</option>
+                    </select>
+                    <button ng-click="load_order()">Load</button>
                 </div>
             </div>
         </div>
