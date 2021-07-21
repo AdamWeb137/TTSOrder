@@ -17,7 +17,7 @@
         </div>
         <div class="centerb main" ng-controller="list">
             <div class="whiteback center" style="display:{{(meals.length > 0) ? 'block' : 'none'}}">
-                <div ng-repeat="meal in meals track by $index" class="meal flexnot flexcenter">
+                <div ng-repeat="meal in meals track by $index" class="meal flexwrap flexcenter">
                     <p class="meal_num">Meal #{{$index+1}}: </p>
                     <p ng-repeat="item in meal track by $index" class="item_group">{{item.name}}</p>
                     <button ng-click="delete_meal($index)">Delete</button>
